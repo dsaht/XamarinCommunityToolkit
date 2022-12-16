@@ -1,0 +1,57 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net6.0;net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>false</ImplicitUsings>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Views\CameraView\Android\**" />
+	  <Compile Remove="Views\CameraView\iOS\**" />
+	  <Compile Remove="Views\CameraView\UWP\**" />
+	  <EmbeddedResource Remove="Views\CameraView\Android\**" />
+	  <EmbeddedResource Remove="Views\CameraView\iOS\**" />
+	  <EmbeddedResource Remove="Views\CameraView\UWP\**" />
+	  <MauiCss Remove="Views\CameraView\Android\**" />
+	  <MauiCss Remove="Views\CameraView\iOS\**" />
+	  <MauiCss Remove="Views\CameraView\UWP\**" />
+	  <MauiXaml Remove="Views\CameraView\Android\**" />
+	  <MauiXaml Remove="Views\CameraView\iOS\**" />
+	  <MauiXaml Remove="Views\CameraView\UWP\**" />
+	  <None Remove="Views\CameraView\Android\**" />
+	  <None Remove="Views\CameraView\iOS\**" />
+	  <None Remove="Views\CameraView\UWP\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Include="Platforms\Android\AutoFitTextureView.android.cs" />
+	  <Compile Include="Platforms\Android\CameraCaptureListener.android.cs" />
+	  <Compile Include="Platforms\Android\CameraCaptureStateListener.android.cs" />
+	  <Compile Include="Platforms\Android\CameraFragment.android.cs" />
+	  <Compile Include="Platforms\Android\CameraStateListener.android.cs" />
+	  <Compile Include="Platforms\Android\CameraViewRenderer.android.cs" />
+	  <Compile Include="Platforms\Android\ImageAvailableListener.android.cs" />
+	  <Compile Include="Platforms\Android\MotionEventHelper.cs" />
+	  <Compile Include="Platforms\iOS\CameraViewRenderer.ios.cs" />
+	  <Compile Include="Platforms\iOS\FormsCameraView.ios.cs" />
+	  <Compile Include="Platforms\MacCatalyst\PlatformClass1.cs" />
+	  <Compile Include="Platforms\Tizen\PlatformClass1.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Platforms\Windows\" />
+	</ItemGroup>
+
+</Project>
