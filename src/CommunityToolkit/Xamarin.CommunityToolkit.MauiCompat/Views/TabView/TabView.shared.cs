@@ -585,7 +585,7 @@ namespace Xamarin.CommunityToolkit.UI.Views
 		{
 			var tapRecognizer = new TapGestureRecognizer();
 
-			tapRecognizer.Tapped += (object? sender, EventArgs args) =>
+			tapRecognizer.Tapped += (object? sender, TappedEventArgs args) =>
 			{
 				if (sender is not View view)
 					return;
